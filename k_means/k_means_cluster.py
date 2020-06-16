@@ -10,9 +10,7 @@
 import pickle
 import numpy
 import matplotlib.pyplot as plt
-import sys
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+from tools.feature_format import featureFormat, targetFeatureSplit
 
 
 
@@ -73,4 +71,4 @@ plt.show()
 try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
-    print "no predictions object named pred found, no clusters to plot"
+    print("no predictions object named pred found, no clusters to plot")
