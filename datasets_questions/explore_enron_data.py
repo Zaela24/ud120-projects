@@ -19,4 +19,8 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
 
+for name in enron_data:
+    if enron_data[name]["salary"] != "NaN" and int(enron_data[name]["salary"]) > 1000000:
+        print(name, enron_data[name]["salary"])
+
 

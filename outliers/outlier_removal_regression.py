@@ -5,11 +5,12 @@ import numpy
 import matplotlib.pyplot as plt
 import pickle
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 from outliers.outlier_cleaner import outlierCleaner
 
 ### load up some practice data with outliers in it
-ages = pickle.load(open("practice_outliers_ages.pkl", "r"))
-net_worths = pickle.load(open("practice_outliers_net_worths.pkl", "r"))
+ages = pickle.load(open("practice_outliers_ages.pkl", "rb"))
+net_worths = pickle.load(open("practice_outliers_net_worths.pkl", "rb"))
 
 ### ages and net_worths need to be reshaped into 2D numpy arrays
 ### second argument of reshape command is a tuple of integers: (n_rows, n_columns)
@@ -25,10 +26,16 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 ### the plotting code below works, and you can see what your regression looks like
 
 
-reg = None
+reg = LinearRegression()
+reg.fit(ages_train, net_worths_train)
+
+print(reg.coef_, reg.intercept_)
+
+
 
 try:
     plt.plot(ages, reg.predict(ages), color="blue")
+    print(reg.score(ages_test, net_worths_test))
 except NameError:
     pass
 plt.scatter(ages, net_worths)

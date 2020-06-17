@@ -14,6 +14,9 @@ def outlierCleaner(predictions, ages, net_worths):
     cleaned_data = []
 
     ### your code goes here
+    errors = []
+    for i in range(len(net_worths)):
+        errors.append(predictions[i] - net_worths[i])
 
     
     return cleaned_data
